@@ -69,7 +69,7 @@ async def delete_post(postId: int):
     posts.pop(post_index)
     return {"message": "Post deleted"}
 
-@router.post("/{postId}/comment", tags=["comments"])
+@router.post("/{postId}/comments", tags=["comments"])
 async def comment_post(postId: int, comment: PostDto):
     post_index = search_post_index(postId)
 
@@ -86,3 +86,12 @@ async def comment_post(postId: int, comment: PostDto):
     )
 
     return posts
+
+@router.get("/{postId}/comments", tags=["comments"])
+async def get_comments(postId: int):
+    post_index = search_post_index(postId)
+
+    if post_index is None:
+        raise HTTPException(status_code=404, detail="Post not found")
+
+    return posts[post_index]["comments"]
