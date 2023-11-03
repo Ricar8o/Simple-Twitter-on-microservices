@@ -37,7 +37,7 @@ sudo apt install uvicorn
 ## Run Services
 
 ```
-cd services/<service-name>
+cd src/services/<service-name>
 
 uvicorn app.main:app --reload
 
