@@ -11,5 +11,5 @@ app = FastAPI()
 async def root():
     return {"message": "Hello from User Services"}
 
-app.include_router(api_v1_router, prefix="/api/v1")
+app.include_router(api_v1_router, prefix="/v1")
 handler = Mangum(app)
