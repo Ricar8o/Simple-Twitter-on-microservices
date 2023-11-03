@@ -11,6 +11,14 @@ class PostDto(BaseModel):
 class UpdatePostDto(BaseModel):
     content: str
 
+
+def search_post_index(postId: int):
+    for index in range(len(posts)):
+        post = posts[index]
+        if post["id"] == postId:
+            return index
+    return None
+
 @router.post("")
 async def create_post(post: PostDto):
     global lastId
@@ -27,24 +35,20 @@ async def create_post(post: PostDto):
     lastId += 1
     return posts
 
-@router.get("{postId}")
+@router.get("/{postId}")
 async def get_post_by_id(postId: int):
     for post in posts:
         if post["id"] == postId:
             return post
 
-@router.put("{postId}")
+@router.put("/{postId}")
 async def update_post(postId: int, update_post: UpdatePostDto):
-    post_index = None
-    saved_post = None
-    for index in range(len(posts)):
-        post = posts[index]
-        if post["id"] == postId:
-            post_index = index
-            saved_post = posts[post_index]
-            break
+    post_index = search_post_index(postId)
+
     if post_index is None:
         raise HTTPException(status_code=404, detail="Post not found")
+
+    saved_post = posts[post_index]
 
     newPost = {
         "id": postId,
@@ -55,16 +59,30 @@ async def update_post(postId: int, update_post: UpdatePostDto):
     posts[post_index] = newPost
     return newPost
 
-@router.delete("{postId}")
+@router.delete("/{postId}")
 async def delete_post(postId: int):
-    post_index = None
-    for index in range(len(posts)):
-        post = posts[index]
-        if post["id"] == postId:
-            post_index = index
-            break
+    post_index = search_post_index(postId)
+
     if post_index is None:
         raise HTTPException(status_code=404, detail="Post not found")
 
     posts.pop(post_index)
     return {"message": "Post deleted"}
+
+@router.post("/{postId}/comment", tags=["comments"])
+async def comment_post(postId: int, comment: PostDto):
+    post_index = search_post_index(postId)
+
+    if post_index is None:
+        raise HTTPException(status_code=404, detail="Post not found")
+    if comment.authorId > len(users) or comment.authorId <= 0:
+        return {"error": "User not found"}
+
+    posts[post_index]["comments"].append(
+        {
+            "content": comment.content,
+            "author": users[comment.authorId - 1],
+        }
+    )
+
+    return posts

@@ -38,7 +38,6 @@ posts = [
         "author": users[1],
         "comments": [
             {
-                "id": 1,
                 "content": "Great post!",
                 "author": users[0]
             }
@@ -56,7 +55,6 @@ posts = [
         "author": users[3],
         "comments": [
             {
-                "id": 2,
                 "content": "You're doing great, Gwen!",
                 "author": users[2]
             }
