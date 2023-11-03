@@ -110,7 +110,7 @@ async def get_user_followers(user_id: int):
 
     return {"message": f"Followers of {user['username']}"}
 
-@router.post("/{user_id}/following")
+@router.get("/{user_id}/following")
 async def get_user_following(user_id: int):
     user_index = search_user_index(user_id)
     if user_index is None:
@@ -119,7 +119,7 @@ async def get_user_following(user_id: int):
 
     return {"message": f"{user['username']} is following users"}
 
-@router.post("/{user_id}/posts")
+@router.get("/{user_id}/posts")
 async def get_user_posts(user_id: int):
     user_index = search_user_index(user_id)
     if user_index is None:
