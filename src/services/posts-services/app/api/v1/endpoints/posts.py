@@ -67,6 +67,8 @@ posts = [
     },
 ]
 
+lastId = 5
+
 class PostDto(BaseModel):
     content: str
     authorId: int
@@ -74,7 +76,7 @@ class PostDto(BaseModel):
 
 @router.post("")
 async def create_post(post: PostDto):
-    lastId = len(posts) + 1
+    global lastId
     if post.authorId > len(users) or post.authorId <= 0:
         return {"error": "User not found"}
     posts.append(
@@ -83,9 +85,13 @@ async def create_post(post: PostDto):
             "content": post.content,
             "author": users[post.authorId - 1],
             "comments": []
-        })
+        }
+    )
+    lastId += 1
     return posts
 
 @router.get("{postId}")
 async def get_post_by_id(postId: int):
-    return posts[postId - 1]
+    for post in posts:
+        if post["id"] == postId:
+            return post
