@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from .data import users, posts, lastId
 
@@ -43,8 +43,8 @@ async def update_post(postId: int, update_post: UpdatePostDto):
             post_index = index
             saved_post = posts[post_index]
             break
-    if not post_index:
-        return {"error": "Post not found"}
+    if post_index is None:
+        raise HTTPException(status_code=404, detail="Post not found")
 
     newPost = {
         "id": postId,
@@ -63,7 +63,8 @@ async def delete_post(postId: int):
         if post["id"] == postId:
             post_index = index
             break
-    if not post_index:
-        return {"error": "Post not found"}
+    if post_index is None:
+        raise HTTPException(status_code=404, detail="Post not found")
 
     posts.pop(post_index)
+    return {"message": "Post deleted"}
