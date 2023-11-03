@@ -85,3 +85,7 @@ async def create_post(post: PostDto):
             "comments": []
         })
     return posts
+
+@router.get("{postId}")
+async def get_post_by_id(postId: int):
+    return posts[postId - 1]
