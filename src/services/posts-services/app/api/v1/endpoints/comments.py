@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
-from .data import users, posts, lastId
-from .posts import PostDto, UpdatePostDto, search_post_index
+from .data import users, posts
+from .posts import PostDto, search_post_index
 
 router = APIRouter()
 
