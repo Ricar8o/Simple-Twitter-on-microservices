@@ -27,7 +27,7 @@ feed = [
                 "id": 1,
                 "content": "Great post!",
                 "author": {
-                    "id": 3,
+                    "id": 1,
                     "username": "johndoe",
                     "name": "John Doe",
                     "email": "john.doe@mail.example.com"
