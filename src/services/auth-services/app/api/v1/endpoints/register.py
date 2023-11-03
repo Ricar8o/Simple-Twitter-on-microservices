@@ -10,6 +10,6 @@ class NewUser(BaseModel):
     email: str
 
 
-@router.post("/register")
-async def register_user():
-    return {"message": "Get Users"}
+@router.post("")
+async def register_user(new_user: NewUser):
+    return {"message": f"New User {new_user.username} registered successfully"}
