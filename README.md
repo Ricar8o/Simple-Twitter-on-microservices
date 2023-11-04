@@ -91,7 +91,7 @@ Como usaremos API Gateway le asignáremos un prefijo a cada microservicio.
   - **Recursos:** Users
 
 ## Implementación
-Para la implementación se realizarán los 3 microservicios usando el framework de python.[FastApi](https://fastapi.tiangolo.com/es/).
+Para la implementación se realizarán los 3 microservicios usando el framework de python [FastApi](https://fastapi.tiangolo.com/es/).
 
 También se usara la herramienta de python virtualenv para generar los paquetes que serán subidos a las lambdas al momento del despliegue.
 
