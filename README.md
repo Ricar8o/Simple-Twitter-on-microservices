@@ -135,9 +135,18 @@ pip install -r requirements.txt
 ```Bash
 pip install fastapi
 pip install "uvicorn[standard]"
+pip install mangum
 ```
 
-[Uvicorn](https://www.uvicorn.org) es una implementación de servidor web ASGI para Python.
+[uvicorn](https://www.uvicorn.org) es una implementación de servidor web ASGI para Python.
+
+[mangum](https://pypi.org/project/mangum/) es un adaptador que se encarga de tomar los eventos que vengan de API Gateway y los envía a los recursos del servicio.
+
+
+```Bash
+pip install mangum
+```
+
 
 ```Bash
 # En algunos sistemas linux se instala así para ejecutarlo como comando de terminal
@@ -160,7 +169,8 @@ uvicorn app.main:app --reload --port 8001
 
 ## Desplegando a AWS lambdas
 
-NOTA: Nos aseguramos de que estemos ejecutando el ambiente virtual y de que hayamos instalado los paquetes dentro de esté.
+### Creando archivos zip con lo necesario para ejecutar el los servicios.
+NOTA: Nos aseguramos de que estemos ejecutando el ambiente virtual y de que hayamos instalado los paquetes dentro de este.
 
 Puede revisar que paquetes hay instalados con el comando:
 ```Bash
@@ -190,4 +200,42 @@ zip -g ../../../posts-services.zip -r app
 cd ../../services/user-services
 zip -g ../../../user-services.zip -r app
 
+# Regresamos a la raiz del proyecto
+cd ../../../
+
 ```
+
+
+### Cargando los zip a AWS
+
+1. Creamos un bucket en S3
+  ![create-bucket.png](img/create-bucket.png)
+
+2. Cargamos los archivos zip que generamos.
+  ![upload-zips](img/upload-zips.png)
+
+### Creando las lambdas
+
+1. Creamos 3 funciones lambda de la siguiente manera:
+  ![create-lambda.png](img/create-lambda.png)
+
+2. En la sección de código de la lambda le damos click a cargar desde S3.
+  ![load-s3-file.png](img/load-s3-file.png)
+
+3. Nos apareceta el siguiente campo para colocar la url de un archivo, para obtener la url vamos al respectivo zip que cargamos en el bucket, copiamos la url, la pegamos en el campo y le damos guardar.
+  ![set-s3-url.png](img/set-s3-url.png)
+  ![bucket-file-url.png](img/bucket-file-url.png)
+
+4. Ahora que subimos el código de la lambda tenemos cambiar el controlador, para hacerlo en la pestaña de código vamos a la sección de *Configuración del tiempo de ejecución* y le dámos click en editar.
+  ![lambda-controller.png](img/lambda-controller.png)
+
+5. Cambiamos el dato del controlador por el siguiente y guardamos.
+  ![change-lambda-handler.png](img/change-lambda-handler.png)
+
+- **Probando la función**
+
+  Si queremos hacer una prueba de la lambda podemos ir a la sección de probar, crear un nuevo evento y creamos el evento con las siguientes características:
+  ![create-lambda-test.png](img/create-lambda-test.png)
+
+  Si todo sale bien al ejecutar la prueba debería salirle lo siguiente:
+  ![success-test.png](img/success-test.png)
