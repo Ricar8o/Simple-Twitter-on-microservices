@@ -156,5 +156,38 @@ uvicorn app.main:app --reload
 
 # Desplegando el servicio en un puerto diferente
 uvicorn app.main:app --reload --port 8001
+```
+
+## Desplegando a AWS lambdas
+
+NOTA: Nos aseguramos de que estemos ejecutando el ambiente virtual y de que hayamos instalado los paquetes dentro de esté.
+
+Puede revisar que paquetes hay instalados con el comando:
+```Bash
+pip list
+```
+
+```Bash
+# Vamos a la carpeta de paquetes de python
+cd env/lib/python3.10/site-packages/
+
+# Generamos 3 zip con los archivos y los mandamos a la raíz del proyecto
+zip -r9 ../../../../auth-services.zip .
+zip -r9 ../../../../posts-services.zip .
+zip -r9 ../../../../user-services.zip .
+
+# Regresamos a la raiz del proyecto
+cd ../../../../
+
+# Por cada microservicio accedemos a la carpeta y agregamos los archivos al zip correspondiente
+
+cd src/services/auth-services
+zip -g ../../../auth-services.zip -r app
+
+cd ../../services/posts-services
+zip -g ../../../posts-services.zip -r app
+
+cd ../../services/user-services
+zip -g ../../../user-services.zip -r app
 
 ```
