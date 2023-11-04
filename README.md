@@ -65,12 +65,12 @@ También necesitamos que un usuario pueda iniciar sesión y registrarse
 
 ### Arquitectura
 
-Estas funciones de la aplicación estaran repartidas en 3 microservicios.
+Estas funciones de la aplicación estarán repartidas en 3 microservicios.
 
 
 ![prototype-design.png](img/Prototipo-Twitter-ARQUITECTURA.png)
 
-Cómo usaremos API Gateway le asignaremos un prefijo a cada microservicio.
+Como usaremos API Gateway le asignáremos un prefijo a cada microservicio.
 
 **Prefijos:**
 
