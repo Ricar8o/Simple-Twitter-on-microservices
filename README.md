@@ -90,20 +90,25 @@ Como usaremos API Gateway le asignáremos un prefijo a cada microservicio.
   - **Prefijo:** users-api/v1
   - **Recursos:** Users
 
-## Virtual environment
+## Implementación
+Para la implementación se realizarán los 3 microservicios usando el framework de python.[FastApi](https://fastapi.tiangolo.com/es/).
 
-### Install
+También se usara la herramienta de python virtualenv para generar los paquetes que serán subidos a las lambdas al momento del despliegue.
 
-https://virtualenv.pypa.io/en/latest/installation.html
+### Virtual environment
 
-```
-# In some linux systems
+**Instalación**
+
+[Guía de instalación](https://virtualenv.pypa.io/en/latest/installation.html)
+
+```Bash
+# En algunos sistemas linux se instala así para ejecutarlo como comando de terminal
 sudo apt install python3-virtualenv
 ```
 
-### Use
+**Usando el ambiente virtual**
 
-```
+```Bash
 # Create environment with python3.10
 virtualenv -p python3.10 env
 
@@ -114,24 +119,39 @@ source ./env/bin/activate
 deactivate
 ```
 
-## Install Requirements
+### Instalar los paquetes necesarios para ejecutar la aplicación
 
-    pip install -r requirements
+**Instalando usando un archivo con una lista de paquetes**
 
+```Bash
+pip install -r requirements.txt
 ```
-# In some linux systems
+
+**Instalando directamente los paquetes**
+
+```Bash
+pip install fastapi
+pip install "uvicorn[standard]"
+```
+
+[Uvicorn](https://www.uvicorn.org) es una implementación de servidor web ASGI para Python.
+
+```Bash
+# En algunos sistemas linux se instala así para ejecutarlo como comando de terminal
 sudo apt install uvicorn
 ```
 
 
-## Run Services
+## Ejecutando algún servicio
 
-```
+```Bash
+# Accedemos a la carpeta del servicio
 cd src/services/<service-name>
 
+# Desplegamos el API usando uvicorn
 uvicorn app.main:app --reload
 
-# Run service in other port
+# Desplegando el servicio en un puerto diferente
 uvicorn app.main:app --reload --port 8001
 
 ```
