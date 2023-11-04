@@ -109,13 +109,16 @@ sudo apt install python3-virtualenv
 **Usando el ambiente virtual**
 
 ```Bash
-# Create environment with python3.10
+# Crear un ambiente dentro de la carpeta del proyecto con python3.10
 virtualenv -p python3.10 env
 
-# Access environmet
+# Acceder al ambiente
 source ./env/bin/activate
 
-# Exit environment
+# Verificar la versión de python
+python --version
+
+# Salir del ambiente virtual
 deactivate
 ```
 
