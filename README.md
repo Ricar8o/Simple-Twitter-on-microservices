@@ -72,13 +72,23 @@ Estas funciones de la aplicación estarán repartidas en 3 microservicios.
 
 Como usaremos API Gateway le asignáremos un prefijo a cada microservicio.
 
-**Prefijos:**
+**Microservicios:**
 
-Auth API -> auth-api/v1
+**Auth API**
 
-Posts API -> posts-api/v1
+  - **Prefijo:** auth-api/v1
+  - **Recursos:** Auth
 
-Users API -> users-api/v1
+**Posts API**
+
+  - **Prefijo:** posts-api/v1
+  - **Recursos:** Comments, Posts, Likes
+
+
+**Users API**
+
+  - **Prefijo:** users-api/v1
+  - **Recursos:** Users
 
 ## Virtual environment
 
