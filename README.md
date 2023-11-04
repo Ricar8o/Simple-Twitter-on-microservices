@@ -1,6 +1,6 @@
 # Simple-Twitter-on-microservices
 
-Para este ejercicio desplegaremos un API con microservicios para simular el comportamiento básico de una app cómo Twitter.
+Para este ejercicio desplegaremos un API con microservicios para simular el comportamiento básico de una app cómo Twitter. Usaremos las tecnologías AWS API Gateway, AWS Lambda Functions y el framework de python `fastapi` para la implementación.
 
 ## Diseño
 
