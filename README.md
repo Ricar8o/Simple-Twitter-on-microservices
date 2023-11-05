@@ -160,10 +160,10 @@ sudo apt install uvicorn
 # Accedemos a la carpeta del servicio
 cd src/services/<service-name>
 
-# Desplegamos el API usando uvicorn
+# Corremos el API usando uvicorn
 uvicorn app.main:app --reload
 
-# Desplegando el servicio en un puerto diferente
+# Ejecutando el servicio en un puerto diferente
 uvicorn app.main:app --reload --port 8001
 ```
 
