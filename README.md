@@ -232,14 +232,6 @@ cd ../../../
 5. Cambiamos el dato del controlador por el siguiente y guardamos.
   ![change-lambda-handler.png](img/change-lambda-handler.png)
 
-- **Probando la función**
-
-  Si queremos hacer una prueba de la lambda podemos ir a la sección de probar, crear un nuevo evento y creamos el evento con las siguientes características:
-  ![create-lambda-test.png](img/create-lambda-test.png)
-
-  Si todo sale bien al ejecutar la prueba debería salirle lo siguiente:
-  ![success-test.png](img/success-test.png)
-
 
 ## Creando API con AWS API Gateway
 1. Vamos a API Gateway y creamos una nueva API de REST
