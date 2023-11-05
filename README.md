@@ -36,9 +36,9 @@ Después de definir los conceptos ahora podemos definir que acciones se debería
 
 **Likes**
 
-- *POST* /posts/{id}/like-> Darle Me gusta a una la publicación
+- *POST* /posts/{id}/likes-> Darle Me gusta a una la publicación
 
-- *DELETE* /posts/{id}/like -> Quitar el Me gusta de una publicación
+- *DELETE* /posts/{id}/likes -> Quitar el Me gusta de una publicación
 
 
 **Users (Usuarios)**
@@ -265,3 +265,13 @@ cd ../../../
 
     ![create-stage.png](img/create-stage.png)
 
+## Probando el API con algunos endpoints
+
+  ![hello-auth.png](img/hello-auth.png)
+  ![hello-posts.png](img/hello-posts.png)
+  ![hello-users.png](img/hello-users.png)
+  ![login-test.png](img/login-test.png)
+  ![get-feed.png](img/get-feed.png)
+  ![create-post.png](img/create-post.png)
+  ![post-created.png](img/post-created.png)
+  ![user-posts.png](img/user-posts.png)
