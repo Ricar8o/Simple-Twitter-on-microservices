@@ -1,6 +1,6 @@
 # Simple-Twitter-on-microservices
 
-Para este ejercicio desplegaremos un API con microservicios para simular el comportamiento básico de una app cómo Twitter. Usaremos las tecnologías AWS API Gateway, AWS Lambda Functions y el framework de python `fastapi` para la implementación.
+Para este ejercicio desplegaremos un API con microservicios para simular el comportamiento básico de una app cómo Twitter. Usaremos las tecnologías AWS API Gateway, AWS Lambda Functions y el framework de python FastApi para la implementación.
 
 ## Diseño
 
@@ -239,3 +239,29 @@ cd ../../../
 
   Si todo sale bien al ejecutar la prueba debería salirle lo siguiente:
   ![success-test.png](img/success-test.png)
+
+
+## Creando API con AWS API Gateway
+1. Vamos a API Gateway y creamos una nueva API de REST
+  ![create-rest-api.png](img/create-rest-api.png)
+
+2. Creamos los 3 recursos de API con los prefijos que planteamos en el diseño (El prefijo del versionamiento se hizo dentro de los servicios con FastApi)
+  ![main-resources.png](/img/main-resources.png)
+
+3. Ahora crearemos un método para cada endpoint, el método debe ser de tipo ANY, en tipo de integración escogemos función lambda, activamos la integración de proxy y escogemos la lambda correspondiente.
+  ![create-method.png](img/create-method.png)
+
+4. Después creamos un nuevo recurso de proxy para cada uno de los recursos principales.
+  ![proxy-resource.png](img/proxy-resource.png)
+
+5. Ahora en el método ANY que se genero para cada recurso proxy agregamos la integración lambda con la lambda correspondiente.
+  ![edit-integration](img/edit-integration.png)
+
+6. Ahora tenemos los siguientes recursos
+
+    ![gateway-resources.png](img/gateway-resources.png)
+
+7. Damos click al botón de implementar API y en el formulario que se despliega escogemos nueva etapa, la llamamos dev y damos click en implementación.
+
+    ![create-stage.png](img/create-stage.png)
+
