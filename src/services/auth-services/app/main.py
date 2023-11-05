@@ -3,11 +3,12 @@ from mangum import Mangum
 
 from app.api.v1.api import router as api_v1_router
 
+root_path = "/auth-api"
 
-app = FastAPI()
+app = FastAPI(root_path=root_path)
 
 
-@app.get("/")
+@app.get(root_path)
 async def root():
     return {"message": "Hello from Auth Services"}
 
